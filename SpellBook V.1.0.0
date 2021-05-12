@@ -1,0 +1,450 @@
+options:
+	forgetcost: 2
+	forgetcooldown: 10
+	forgetdesc: test
+	
+	Wallcost: 2
+	Wallcooldown: 10
+	Walldesc: test
+	
+	Volleycost: 2
+	Volleycooldown: 10
+	Volleydesc: test
+	
+	Telekinesiscost: 2
+	Telekinesiscooldown: 10
+	Telekinesisdesc: test
+	
+	Frostwalkcost: 2
+	Frostwalkcooldown: 10
+	Frostwalkdesc: test
+	
+	Windwalkcost: 2
+	Windwalkcooldown: 10
+	Windwalkdesc: test
+	
+	Healcost: 2
+	Healcooldown: 10
+	Healdesc: test
+	
+	Leapcost: 2
+	Leapcooldown: 10
+	Leapdesc: test
+	
+	Tombstonecost: 2
+	Tombstonecooldown: 10
+	Tombstonedesc: test
+
+
+
+
+command /spellbook <text> [<player>]:
+	trigger:
+		set {_player} to player
+		if arg-2 is set:
+			set {_player} to arg-2
+		if arg-1 is "forget":
+			spellBook({_player}, "Forget")
+			if arg-2 is set:
+				send "&6You have given a &bForget Spell &6book to %arg-2%" to player
+			else:
+				send "&6You have received a &bForget Spell &6book" to player
+		else if arg-1 is "wall":
+			spellBook({_player}, "Wall")
+			if arg-2 is set:
+				send "&6You have given a &bWall Spell &6book to %arg-2%" to player
+			else:
+				send "&6You have received a &bWall Spell &6book" to player
+		else if arg-1 is "volley":
+			spellBook({_player}, "Volley")
+			if arg-2 is set:
+				send "&6You have given a &bVolley Spell &6book to %arg-2%" to player
+			else:
+				send "&6You have received a &bVolley Spell &6book" to player
+		else if arg-1 is "telekinesis":
+			spellBook({_player}, "Telekinesis")
+			if arg-2 is set:
+				send "&6You have given a &bTelekinesis Spell &6book to %arg-2%" to player
+			else:
+				send "&6You have received a &bTelekinesis Spell &6book" to player
+		else if arg-1 is "frostwalk":
+			spellBook({_player}, "Frostwalk")
+			if arg-2 is set:
+				send "&6You have given a &bFrostwalk Spell &6book to %arg-2%" to player
+			else:
+				send "&6You have received a &bFrostwalk Spell &6book" to player
+		else if arg-1 is "windwalk":
+			spellBook({_player}, "Windwalk")
+			if arg-2 is set:
+				send "&6You have given a &bWindwalk Spell &6book to %arg-2%" to player
+			else:
+				send "&6You have received a &bWindwalk Spell &6book" to player
+		else if arg-1 is "heal":
+			spellBook({_player}, "Heal")
+			if arg-2 is set:
+				send "&6You have given a &bHeal Spell &6book to %arg-2%" to player
+			else:
+				send "&6You have received a &bHeal Spell &6book" to player
+		else if arg-1 is "leap":
+			spellBook({_player}, "Leap")
+			if arg-2 is set:
+				send "&6You have given a &bLeap Spell &6book to %arg-2%" to player
+			else:
+				send "&6You have received a &bLeap Spell &6book" to player
+		else if arg-1 is "tombstone":
+			spellBook({_player}, "Tombstone")
+			if arg-2 is set:
+				send "&6You have given a &bTombstone Spell &6book to %arg-2%" to player
+			else:
+				send "&6You have received a &bTombstone Spell &6book" to player
+		else:
+			send "&6/spellbook forget" to player
+			send "&6/spellbook wall" to player
+			send "&6/spellbook volley" to player
+			send "&6/spellbook telekinesis" to player
+			send "&6/spellbook frostwalk" to player
+			send "&6/spellbook windwalk" to player
+			send "&6/spellbook heal" to player
+			send "&6/spellbook leap" to player
+			send "&6/spellbook tombstone" to player
+			
+#For the console to give out a book, I recommend you use spellBook(player, "the spell name") but the command can be used also	
+
+function spellBook(p: player, spell: text):
+	give 1 book named "&d%{_spell}% &dSpell Book" to {_p}
+			
+on right click:
+	if name of player's tool is "&dForget &dSpell Book":
+		if {%player%.spells::*} does not contain "forget":
+			add "forget" to {%player%.spells::*}
+		remove 1 book named "&dForget &dSpell Book" from player's inventory
+		send "&6You have redeemed that spell book." to player
+	if name of player's tool is "&dWall &dSpell Book":
+		if {%player%.spells::*} does not contain "wall":
+			add "wall" to {%player%.spells::*}
+		remove 1 book named "&dWall &dSpell Book" from player's inventory
+		send "&6You have redeemed that spell book." to player
+	if name of player's tool is "&dVolley &dSpell Book":
+		if {%player%.spells::*} does not contain "volley":
+			add "volley" to {%player%.spells::*}
+		remove 1 book named "&dVolley &dSpell Book" from player's inventory
+		send "&6You have redeemed that spell book." to player
+	if name of player's tool is "&dTelekinesis &dSpell Book":
+		if {%player%.spells::*} does not contain "telekinesis":
+			add "telekinesis" to {%player%.spells::*}
+		remove 1 book named "&dTelekinesis &dSpell Book" from player's inventory
+		send "&6You have redeemed that spell book." to player
+	if name of player's tool is "&dFrostwalk &dSpell Book":
+		if {%player%.spells::*} does not contain "frostwalk":
+			add "frostwalk" to {%player%.spells::*}
+		remove 1 book named "&dFrostwalk &dSpell Book" from player's inventory
+		send "&6You have redeemed that spell book." to player
+	if name of player's tool is "&dWindwalk &dSpell Book":
+		if {%player%.spells::*} does not contain "windwalk":
+			add "windwalk" to {%player%.spells::*}
+		remove 1 book named "&dWindwalk &dSpell Book" from player's inventory
+		send "&6You have redeemed that spell book." to player
+	if name of player's tool is "&dHeal &dSpell Book":
+		if {%player%.spells::*} does not contain "heal":
+			add "heal" to {%player%.spells::*}
+		remove 1 book named "&dHeal &dSpell Book" from player's inventory
+		send "&6You have redeemed that spell book." to player
+	if name of player's tool is "&dLeap &dSpell Book":
+		if {%player%.spells::*} does not contain "leap":
+			add "leap" to {%player%.spells::*}
+		remove 1 book named "&dLeap &dSpell Book" from player's inventory
+		send "&6You have redeemed that spell book." to player
+	if name of player's tool is "&dTombstone &dSpell Book":
+		if {%player%.spells::*} does not contain "tombstone":
+			add "tombstone" to {%player%.spells::*}
+		remove 1 book named "&dTombstone &dSpell Book" from player's inventory
+		send "&6You have redeemed that spell book." to player
+
+command /clearspells:
+	trigger:
+		clear {%player%.spells::*}
+	
+on right click:
+	if player's tool is a stick:
+		open chest with 1 rows named "&dSpells" to player
+		loop 9 times:
+			set {_var} to loop-number - 1
+			if {%player%.spells::%loop-number%} is "forget":
+				if {%player%.spell} is "forget":
+					format slot {_var} of player with nether wart named "&7Spell: &5Forget" with lore "&aEQUIPPED", "", "&aCost: &c{@forgetcost} &cRedstone Dust", "&aCooldown: &d{@forgetcooldown} &dSeconds", "", "&aDescription:" and "  &7{@forgetdesc}" to close then run console command "spellequip %player% Forget"
+				else:
+					format slot {_var} of player with nether wart named "&7Spell: &5Forget" with lore "", "&aCost: &c{@forgetcost} &cRedstone Dust", "&aCooldown: &d{@forgetcooldown} &dSeconds", "", "&aDescription:" and "  &7{@forgetdesc}" to close then run console command "spellequip %player% Forget"
+			if {%player%.spells::%loop-number%} is "wall":
+				if {%player%.spell} is "wall":
+					format slot {_var} of player with nether wart named "&7Spell: &5Wall" with lore "&aEQUIPPED", "", "&aCost: &c{@Wallcost} &cRedstone Dust", "&aCooldown: &d{@Wallcooldown} &dSeconds", "", "&aDescription:" and "  &7{@Walldesc}" to close then run console command "spellequip %player% Wall"
+				else:
+					format slot {_var} of player with nether wart named "&7Spell: &5Wall" with lore "", "&aCost: &c{@Wallcost} &cRedstone Dust", "&aCooldown: &d{@Wallcooldown} &dSeconds", "", "&aDescription:" and "  &7{@Walldesc}" to close then run console command "spellequip %player% Wall"
+			if {%player%.spells::%loop-number%} is "volley":
+				if {%player%.spell} is "volley":
+					format slot {_var} of player with nether wart named "&7Spell: &5Volley" with lore "&aEQUIPPED", "", "&aCost: &c{@Volleycost} &cRedstone Dust", "&aCooldown: &d{@Volleycooldown} &dSeconds", "", "&aDescription:" and "  &7{@Volleydesc}" to close then run console command "spellequip %player% Volley"
+				else:
+					format slot {_var} of player with nether wart named "&7Spell: &5Volley" with lore "", "&aCost: &c{@Volleycost} &cRedstone Dust", "&aCooldown: &d{@Volleycooldown} &dSeconds", "", "&aDescription:" and "  &7{@Volleydesc}" to close then run console command "spellequip %player% Volley"
+			if {%player%.spells::%loop-number%} is "telekinesis":
+				if {%player%.spell} is "telekinesis":
+					format slot {_var} of player with nether wart named "&7Spell: &5Telekinesis" with lore "&aEQUIPPED", "", "&aCost: &c{@Telekinesiscost} &cRedstone Dust", "&aCooldown: &d{@Telekinesiscooldown} &dSeconds", "", "&aDescription:" and "  &7{@Telekinesisdesc}" to close then run console command "spellequip %player% Telekinesis"
+				else:
+					format slot {_var} of player with nether wart named "&7Spell: &5Telekinesis" with lore "", "&aCost: &c{@Telekinesiscost} &cRedstone Dust", "&aCooldown: &d{@Telekinesiscooldown} &dSeconds", "", "&aDescription:" and "  &7{@Telekinesisdesc}" to close then run console command "spellequip %player% Telekinesis"
+			if {%player%.spells::%loop-number%} is "frostwalk":
+				if {%player%.spell} is "frostwalk":
+					format slot {_var} of player with nether wart named "&7Spell: &5Frostwalk" with lore "&aEQUIPPED", "", "&aCost: &c{@Frostwalkcost} &cRedstone Dust", "&aCooldown: &d{@Frostwalkcooldown} &dSeconds", "", "&aDescription:" and "  &7{@Frostwalkdesc}" to close then run console command "spellequip %player% Frostwalk"
+				else:
+					format slot {_var} of player with nether wart named "&7Spell: &5Frostwalk" with lore "", "&aCost: &c{@Frostwalkcost} &cRedstone Dust", "&aCooldown: &d{@Frostwalkcooldown} &dSeconds", "", "&aDescription:" and "  &7{@Frostwalkdesc}" to close then run console command "spellequip %player% Frostwalk"
+			if {%player%.spells::%loop-number%} is "windwalk":
+				if {%player%.spell} is "windwalk":
+					format slot {_var} of player with nether wart named "&7Spell: &5Windwalk" with lore "&aEQUIPPED", "", "&aCost: &c{@Windwalkcost} &cRedstone Dust", "&aCooldown: &d{@Windwalkcooldown} &dSeconds", "", "&aDescription:" and "  &7{@Windwalkdesc}" to close then run console command "spellequip %player% Windwalk"
+				else:
+					format slot {_var} of player with nether wart named "&7Spell: &5Windwalk" with lore "", "&aCost: &c{@Windwalkcost} &cRedstone Dust", "&aCooldown: &d{@Windwalkcooldown} &dSeconds", "", "&aDescription:" and "  &7{@Windwalkdesc}" to close then run console command "spellequip %player% Windwalk"
+			if {%player%.spells::%loop-number%} is "heal":
+				if {%player%.spell} is "heal":
+					format slot {_var} of player with nether wart named "&7Spell: &5Heal" with lore "&aEQUIPPED", "", "&aCost: &c{@Healcost} &cRedstone Dust", "&aCooldown: &d{@Healcooldown} &dSeconds", "", "&aDescription:" and "  &7{@Healdesc}" to close then run console command "spellequip %player% Heal"
+				else:
+					format slot {_var} of player with nether wart named "&7Spell: &5Heal" with lore "", "&aCost: &c{@Healcost} &cRedstone Dust", "&aCooldown: &d{@Healcooldown} &dSeconds", "", "&aDescription:" and "  &7{@Healdesc}" to close then run console command "spellequip %player% Heal"
+			if {%player%.spells::%loop-number%} is "leap":
+				if {%player%.spell} is "leap":
+					format slot {_var} of player with nether wart named "&7Spell: &5Leap" with lore "&aEQUIPPED", "", "&aCost: &c{@Leapcost} &cRedstone Dust", "&aCooldown: &d{@Leapcooldown} &dSeconds", "", "&aDescription:" and "  &7{@Leapdesc}" to close then run console command "spellequip %player% Leap"
+				else:
+					format slot {_var} of player with nether wart named "&7Spell: &5Leap" with lore "", "&aCost: &c{@Leapcost} &cRedstone Dust", "&aCooldown: &d{@Leapcooldown} &dSeconds", "", "&aDescription:" and "  &7{@Leapdesc}" to close then run console command "spellequip %player% Leap"
+			if {%player%.spells::%loop-number%} is "tombstone":
+				if {%player%.spell} is "tombstone":
+					format slot {_var} of player with nether wart named "&7Spell: &5Tombstone" with lore "&aEQUIPPED", "", "&aCost: &c{@Tombstonecost} &cRedstone Dust", "&aCooldown: &d{@Tombstonecooldown} &dSeconds", "", "&aDescription:" and "  &7{@Tombstonedesc}" to close then run console command "spellequip %player% Tombstone"
+				else:
+					format slot {_var} of player with nether wart named "&7Spell: &5Tombstone" with lore "", "&aCost: &c{@Tombstonecost} &cRedstone Dust", "&aCooldown: &d{@Tombstonecooldown} &dSeconds", "", "&aDescription:" and "  &7{@Tombstonedesc}" to close then run console command "spellequip %player% Tombstone"
+				
+command /spellequip <player> <text>:
+	trigger:
+		set {%arg-1%.spell} to arg-2
+		send "&a%arg-2% &aSpell successfully equiped" to arg-1
+	
+on left click:
+	if player's tool is stick:
+		if {%player%.cooldown} is not 1:
+			if {%player%.spell} is "forget":
+				if player's inventory contains {@forgetcost} redstone:
+					remove {@forgetcost} redstone from player's inventory
+					set {%player%.cooldown} to 1
+					set {_entity} to player's target entity
+					apply regeneration 1 to player for 5 seconds
+					apply blindness 1 to {_entity} for 5 seconds
+					apply slowness 1 to {_entity} for 5 seconds
+					apply wither 1 to {_entity} for 5 seconds
+					wait {@forgetcooldown} seconds
+					set {%player%.cooldown} to 0
+					send "&aYour spell is ready to use!" to player
+				else:
+					send "&cYou don't have enough redstone dust to use this spell!" to player
+			if {%player%.spell} is "wall":
+				if player's inventory contains {@Wallcost} redstone:
+					remove {@Wallcost} redstone from player's inventory
+					set {%player%.cooldown} to 1
+					if player's facing is west or east:
+						set {_block} to location of player's target block
+						add location of block 1 above {_block} to {_blocks::*}
+						add location of block 1 above 1 north {_block} to {_blocks::*}
+						add location of block 1 above 1 south {_block} to {_blocks::*}
+						add location of block 2 above {_block} to {_blocks::*}
+						add location of block 2 above 1 north {_block} to {_blocks::*}
+						add location of block 2 above 1 south {_block} to {_blocks::*}
+						add location of block 3 above {_block} to {_blocks::*}
+						add location of block 3 above 1 north {_block} to {_blocks::*}
+						add location of block 3 above 1 south {_block} to {_blocks::*}
+					if player's facing is north or south:
+						set {_block} to location of player's target block
+						add location of block 1 above {_block} to {_blocks::*}
+						add location of block 1 above 1 east {_block} to {_blocks::*}
+						add location of block 1 above 1 west {_block} to {_blocks::*}
+						add location of block 2 above {_block} to {_blocks::*}
+						add location of block 2 above 1 east {_block} to {_blocks::*}
+						add location of block 2 above 1 west {_block} to {_blocks::*}
+						add location of block 3 above {_block} to {_blocks::*}
+						add location of block 3 above 1 east {_block} to {_blocks::*}
+						add location of block 3 above 1 west {_block} to {_blocks::*}	
+					loop 9 times:
+						if block at {_blocks::%loop-number%} is air:
+							set block at {_blocks::%loop-number%} to stone
+							add {_blocks::%loop-number%} to {_blockstoremove::*}
+					wait 3 seconds
+					set {_size} to size of {_blockstoremove::*}
+					loop {_size} times:
+						set block at {_blockstoremove::%loop-number%} to air
+					wait {@Wallcooldown} seconds
+					set {%player%.cooldown} to 0
+					send "&aYour spell is ready to use!" to player
+				else:
+					send "&cYou don't have enough redstone dust to use this spell!" to player
+			if {%player%.spell} is "volley":
+				if player's inventory contains {@Volleycost} redstone:
+					remove {@Volleycost} redstone from player's inventory
+					set {_amount} to random integer between 4 and 8
+					set {_direct} to random integer between 1 and 4
+					set {_speed} to random integer between 1 and 5
+					set {%player%.cooldown} to 1
+					loop {_amount} times:
+						wait 0.1 seconds
+						make the player shoot an arrow at velocity 1
+						if {_direct} is 1:
+							push the last spawned projectile up at speed {_speed}
+							chance of 50%:
+								push the last spawned projectile left at speed 2
+							chance of 50%:
+								push the last spawned projectile right at speed 2
+						if {_direct} is 2:
+							push the last spawned projectile down at speed {_speed}
+							chance of 50%:
+								push the last spawned projectile left at speed 2
+							chance of 50%:
+								push the last spawned projectile right at speed 2
+						if {_direct} is 3:
+							push the last spawned projectile left at speed {_speed}
+							chance of 50%:
+								push the last spawned projectile up at speed 2
+							chance of 50%:
+								push the last spawned projectile down at speed 2
+						if {_direct} is 4:
+							push the last spawned projectile right at speed {_speed}
+							chance of 50%:
+								push the last spawned projectile up at speed 2
+							chance of 50%:
+								push the last spawned projectile down at speed 2
+					wait {@Volleycooldown} seconds
+					set {%player%.cooldown} to 0
+					send "&aYour spell is ready to use!" to player
+				else:
+					send "&cYou don't have enough redstone dust to use this spell!" to player
+			if {%player%.spell} is "Telekinesis":
+				if player's inventory contains {@Telekinesiscost} redstone:
+					remove {@Telekinesiscost} redstone from player's inventory
+					set {%player%.cooldown} to 1
+					set {_player} to player
+					loop all entities in radius 5 around player:
+						if loop-entity is not {_player}:
+							push loop-entity in direction of the player at speed 1
+							push loop-entity up at speed 1
+					wait {@Telekinesiscooldown} seconds
+					set {%player%.cooldown} to 0
+				else:
+					send "&cYou don't have enough redstone dust to use this spell!" to player
+			if {%player%.spell} is "frostwalk":
+				if player's inventory contains {@Frostwalkcost} redstone:
+					remove {@Frostwalkcost} redstone from player's inventory
+					set {%player%.cooldown} to 1
+					loop 9 times:
+						set {_getblock} to block loop-value infront of player
+						
+							if loop-block is water:
+								set block at location of loop-block to ice
+								add location of loop-block to {_blocksice::*}
+					wait 4 seconds
+					loop {_blocksice::*}:
+						set block at loop-value to water
+					wait {@Frostwalkcooldown} seconds
+					set {%player%.cooldown} to 0
+					send "&aYour spell is ready to use!" to player
+				else:
+					send "&cYou don't have enough redstone dust to use this spell!" to player
+			if {%player%.spell} is "windwalk":
+				if player's inventory contains {@Windwalkcost} redstone:
+					remove {@Windwalkcost} redstone from player's inventory
+					set {%player%.cooldown} to 1
+					apply speed 3 to player for 5 seconds
+					wait 15 seconds
+					set {%player%.cooldown} to 0
+				else:
+					send "&cYou don't have enough redstone dust to use this spell!" to player
+			if {%player%.spell} is "heal":
+				if player's inventory contains {@Healcost} redstone:
+					remove {@Healcost} redstone from player's inventory
+					set {%player%.cooldown} to 1
+					add 4 to player's health
+					wait {@Healcooldown} seconds
+					set {%player%.cooldown} to 0
+					send "&aYour spell is ready to use!" to player
+				else:
+					send "&cYou don't have enough redstone dust to use this spell!" to player
+			if {%player%.spell} is "leap":
+				if player's inventory contains {@Leapcost} redstone:
+					remove {@Leapcost} redstone from player's inventory
+					set {%player%.cooldown} to 1
+					push player in direction of the player at speed 1
+					push player up at speed 1
+					wait {@Leapcooldown} seconds
+					set {%player%.cooldown} to 0
+					send "&aYour spell is ready to use!" to player
+				else:
+					send "&cYou don't have enough redstone dust to use this spell!" to player
+			if {%player%.spell} is "tombstone":
+				if player's inventory contains {@Tombstonecost} redstone:
+					remove {@Tombstonecost} redstone from player's inventory
+					set {%player%.cooldown} to 1
+					set {_entity} to location of player's target entity
+					add location of block 1 west {_entity} to {_blocks::*}
+					add block 1 west {_entity} to {_blockss::*}
+					add location of block 1 east {_entity} to {_blocks::*}
+					add block 1 east {_entity} to {_blockss::*}
+					add location of block 1 north {_entity} to {_blocks::*}
+					add block 1 north {_entity} to {_blockss::*}
+					add location of block 1 south {_entity} to {_blocks::*}
+					add block 1 south {_entity} to {_blockss::*}
+					add location of block 1 north 1 west {_entity} to {_blocks::*}
+					add block 1 north 1 west {_entity} to {_blockss::*}
+					add location of block 1 east 1 south {_entity} to {_blocks::*}
+					add block 1 east 1 south {_entity} to {_blockss::*}
+					add location of block 1 north 1 east {_entity} to {_blocks::*}
+					add block 1 north 1 east {_entity} to {_blockss::*}
+					add location of block 1 south 1 west {_entity} to {_blocks::*}
+					add block 1 south 1 west {_entity} to {_blockss::*}
+					add location of block 1 above 1 west {_entity} to {_blocks::*}
+					add block 1 above 1 west {_entity} to {_blockss::*}
+					add location of block 1 above 1 east {_entity} to {_blocks::*}
+					add block 1 above 1 east {_entity} to {_blockss::*}
+					add location of block 1 above 1 north {_entity} to {_blocks::*}
+					add block 1 above 1 north {_entity} to {_blockss::*}
+					add location of block 1 above 1 south {_entity} to {_blocks::*}
+					add block 1 above 1 south {_entity} to {_blockss::*}
+					add location of block 1 above 1 north 1 west {_entity} to {_blocks::*}
+					add block 1 above 1 north 1 west {_entity} to {_blockss::*}
+					add location of block 1 above 1 east 1 south {_entity} to {_blocks::*}
+					add block 1 above 1 east 1 south {_entity} to {_blockss::*}
+					add location of block 1 above  1 north 1 east {_entity} to {_blocks::*}
+					add block 1 above 1 north 1 east {_entity} to {_blockss::*}
+					add location of block 1 above 1 south 1 west {_entity} to {_blocks::*}
+					add block 1 above 1 south 1 west {_entity} to {_blockss::*}
+					add location of block 2 above 1 west {_entity} to {_blocks::*}
+					add block 2 above 1 west {_entity} to {_blockss::*}
+					add location of block 2 above 1 east {_entity} to {_blocks::*}
+					add block 2 above 1 east {_entity} to {_blockss::*}
+					add location of block 2 above 1 north {_entity} to {_blocks::*}
+					add block 2 above 1 north {_entity} to {_blockss::*}
+					add location of block 2 above 1 south {_entity} to {_blocks::*}
+					add block 2 above 1 south {_entity} to {_blockss::*}
+					add location of block 2 above 1 north 1 west {_entity} to {_blocks::*}
+					add block 2 above 1 north 1 west {_entity} to {_blockss::*}
+					add location of block 2 above 1 east 1 south {_entity} to {_blocks::*}
+					add block 2 above 1 east 1 south {_entity} to {_blockss::*}
+					add location of block 2 above  1 north 1 east {_entity} to {_blocks::*}
+					add block 2 above 1 north 1 east {_entity} to {_blockss::*}
+					add location of block 2 above 1 south 1 west {_entity} to {_blocks::*}
+					add block 2 above 1 south 1 west {_entity} to {_blockss::*}
+					loop {_blocks::*}:
+						if block at loop-value is air:
+							set block at loop-value to iron bars
+					wait 3 seconds
+					loop 24 times:
+						if block at {_blocks::%loop-number%} is iron bars:
+							set block at {_blocks::%loop-number%} to air
+					wait {@Tombstonecooldown} seconds
+					set {%player%.cooldown} to 0
+					send "&aYour spell is ready to use!" to player
+				else:
+					send "&cYou don't have enough redstone dust to use this spell!" to player
+		else:
+			send "&cThere is a cooldown for spells." to player
+	
+on left click:
+	if player's tool is stick:
+		if {%player%.spell} is "forget":
+		
